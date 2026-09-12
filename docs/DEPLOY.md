@@ -35,13 +35,13 @@ would have produced the broken state above fails loudly instead of quietly.
 
 | Secret | What it is |
 |---|---|
-| `SSH_HOST` | the server, e.g. `warships.romanavr.com` |
+| `SSH_HOST` | the server hostname |
 | `SSH_USER` | user with write access to the web root |
 | `SSH_KEY` | **private** key, whole file including the BEGIN/END lines |
-| `DEPLOY_PATH` | web root, e.g. `/var/www/warships.romanavr.com/html` |
+| `DEPLOY_PATH` | the web root on that server |
 | `CF_ZONE_ID` | Cloudflare zone id, on the domain's overview page |
 | `CF_API_TOKEN` | token with **Zone → Cache Purge → Purge** on that zone only |
-| `SITE_URL` | `https://warships.romanavr.com/`, for the final check |
+| `SITE_URL` | the public URL, for the post-deploy check |
 
 Add them under Settings → Secrets and variables → Actions.
 
@@ -56,7 +56,7 @@ root accumulates one full build — about 45 MB — per deploy, forever.
 
 ## nginx
 
-`build/web/nginx-warships.romanavr.com.conf` is the live config. Two things to
+`deploy/nginx.conf` is a working example. Two things to
 know if you edit it:
 
 - **Do not add a `types { ... }` block.** In nginx `types` replaces the
