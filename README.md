@@ -6,6 +6,37 @@ Or download for **[macOS or Windows](https://github.com/Romanavr/warships/releas
 
 ---
 
+### ⚠️ macOS: one extra step the first time
+
+macOS will refuse to open the app and offer only **Move to Trash**. It is not
+damaged and it is not infected — the app simply is not *notarised*, which means
+Apple has not scanned it, which needs a paid Apple Developer account. Every
+independently released Mac app without one behaves this way.
+
+Pick either fix. Both are permanent for that copy.
+
+**A. Click through Settings — no Terminal**
+
+1. Unzip, and drag **3DGame — Littoral** to **Applications**
+2. Double-click it. macOS refuses — click **Done** (*not* Move to Trash)
+3. Open **System Settings → Privacy & Security**
+4. Scroll to the bottom. There is a line saying *"3DGame — Littoral was blocked…"*
+   with an **Open Anyway** button — click it
+5. Open the app again and choose **Open**
+
+**B. One command in Terminal**
+
+```sh
+xattr -dr com.apple.quarantine ~/Downloads/*Littoral.app
+```
+
+Then open it normally. (The `*` avoids having to type the dash in the name.)
+
+> **Right-click → Open no longer works.** That used to be the standard trick;
+> Apple removed it in recent macOS versions. Use A or B.
+
+---
+
 A single-player 3D naval game in Godot 4.7.2, using GDScript. Original ships,
 aircraft, ocean and effects; no external assets or plugins — every mesh,
 material, texture and sound is generated at runtime or built from the Blender
