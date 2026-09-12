@@ -20,3 +20,4 @@
 *.cfg.user
 
 .DS_Store
+dist/
