@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShipLoadout" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ship_loadout.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+designation = "Kestrel-class missile corvette"
+length = 54.0
+beam = 10.0
+speed = 16.5
+gun_range = 600.0
+missile_range = 1400.0
+missile_reload = 8.0
+ciws_range = 190.0
+ciws_rounds = 120

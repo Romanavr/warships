@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ShipLoadout" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ship_loadout.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+designation = "Tern-class fast patrol boat"
+hull_model = "fac"
+offline_by_design = Array[String](["aft_gun", "sam", "launcher_port", "launcher_starboard", "ciws"])
+length = 28.0
+beam = 5.2
+speed = 22.0
+gun_range = 450.0
+missile_range = 1100.0
+missile_reload = 10.0
+ciws_range = 150.0
+ciws_rounds = 0
+component_health = {
+"bow": 88.0, "mid": 132.0, "stern": 95.0,
+"gun": 48.0, "aft_gun": 1.0, "engine": 62.0, "rudder": 28.0,
+"bridge": 52.0, "radar": 28.0, "launcher_port": 1.0,
+"launcher_starboard": 1.0, "ciws": 1.0, "sam": 1.0
+}

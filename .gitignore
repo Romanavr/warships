@@ -1,0 +1,22 @@
+# Godot's import cache and derived data. Regenerated from source on first open;
+# committing it means every machine fights over binary churn it cannot merge.
+.godot/
+*.import.bak
+
+# Build output. All of it is produced by `tools/build_web.py` or an export
+# preset, and all of it is large: the three platform builds and the exported
+# web files come to well over half a gigabyte.
+/build/
+/builds/
+
+# Screenshots the capture tests write. Useful while working, meaningless in
+# history, and 126 MB of it.
+/artifacts/
+
+# The export template archive, if it is ever downloaded here.
+*.tpz
+
+# Local player settings written by the game at runtime.
+*.cfg.user
+
+.DS_Store
