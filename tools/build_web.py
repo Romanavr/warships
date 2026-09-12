@@ -48,6 +48,10 @@ STATIC = ["index.png", "index.icon.png", "index.apple-touch-icon.png"]
 
 
 def export() -> None:
+    # Godot will not create the target folder, and `build/` is gitignored — so
+    # on a fresh checkout (which is every CI run) the directory is simply not
+    # there and the export fails with "Target folder does not exist".
+    OUT.mkdir(parents=True, exist_ok=True)
     print("exporting…")
     result = subprocess.run(
         ["godot", "--headless", "--export-release", "Web", str(PAGE)],
