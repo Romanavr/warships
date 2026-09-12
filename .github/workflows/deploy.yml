@@ -60,22 +60,28 @@ jobs:
       - name: Import resources
         run: godot --headless --import || true
 
+      # Run in parallel. Each test boots its own Godot, and eighteen of those in
+      # sequence is five minutes of a runner sitting on one core while three
+      # idle. They share nothing — separate processes, separate scene trees —
+      # so the only reason they were serial is that a `for` loop is easier to
+      # write than an `xargs`.
       - name: Run the tests
         run: |
           set -uo pipefail
-          failed=0
-          for t in smoke missiles defense air_defense combined player breakup \
-                   capture_cargo capture_comms campaign capture_hud capture_lights \
-                   capture_debrief masking escort capture_menu lang boot; do
-            out=$(godot --headless --script "tests/$t.gd" 2>&1) || true
-            if echo "$out" | grep -qE "^FAIL|SCRIPT ERROR|WATCHDOG"; then
-              echo "::error title=$t::$(echo "$out" | grep -E '^FAIL|SCRIPT ERROR|WATCHDOG' | head -3)"
-              failed=1
-            else
-              echo "ok  $t"
-            fi
-          done
-          exit $failed
+          cores=$(nproc)
+          echo "running on $cores cores"
+          printf '%s\n' smoke missiles defense air_defense combined player breakup \
+            capture_cargo capture_comms campaign capture_hud capture_lights \
+            capture_debrief masking escort capture_menu lang boot \
+          | xargs -P "$cores" -I{} bash -c '
+              out=$(godot --headless --script "tests/{}.gd" 2>&1) || true
+              if echo "$out" | grep -qE "^FAIL|SCRIPT ERROR|WATCHDOG"; then
+                echo "::error title={}::$(echo "$out" | grep -E "^FAIL|SCRIPT ERROR|WATCHDOG" | head -3)"
+                exit 1
+              fi
+              echo "ok  {}"
+            '
+          # xargs exits non-zero if any child did, which is exactly the gate.
 
       # Renames every engine-derived file with a hash of the build, so a browser
       # or CDN holding an old copy asks for a URL that no longer exists rather
