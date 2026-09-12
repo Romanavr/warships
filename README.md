@@ -1,24 +1,54 @@
 # 3DGame — Littoral
 
-A single-player 3D naval sandbox prototype in Godot 4.7.2, using GDScript and Forward+ (Metal on this Mac). Original procedural ships, aircraft, ocean and effects; no external assets or plugins required — every mesh, material, texture and sound in the build is generated at runtime.
+### ▶ **[Play in your browser — warships.romanavr.com](https://warships.romanavr.com/)**
+
+Or download for **[macOS or Windows](https://github.com/Romanavr/warships/releases/latest)**.
+
+---
+
+A single-player 3D naval game in Godot 4.7.2, using GDScript. Original ships,
+aircraft, ocean and effects; no external assets or plugins — every mesh,
+material, texture and sound is generated at runtime or built from the Blender
+scripts in `tools/`.
+
+It is built around one idea: **you shoot at parts of a ship, not at the ship.**
+Every module — the forward gun, the funnel, the radar, the launchers, the
+steering gear — has a place on the hull, health of its own and a consequence for
+losing it. The HUD exists to make choosing between them a decision rather than a
+guess: point at a module and it tells you what killing it would cost her.
 
 ## Play
 
-Double-click **Play.command**, then press **Space**. Or:
+**In the browser:** <https://warships.romanavr.com/>
+
+**From source:** double-click **Play.command**, or
 
 ```sh
 godot --path . -- --start-paused
 ```
 
-To edit, import `project.godot` in Godot and press F5. Models are generated at runtime; inspect the Remote scene tree while playing.
+The game opens on a choice of two:
 
-You are the captain of the corvette **KESTREL / 01**, with one gunship in
-support. Three waves come at you:
+- **Campaign** — four scripted levels in the Strait of Hormuz. It starts by
+  teaching the mechanic: stop a merchant by destroying her engine room, without
+  sinking her. Then missile-armed patrol craft, a gunship duel you fly yourself,
+  and a corvette that outranges you.
+- **Duel** — one corvette against one. No orders, no escorts, everything
+  released from the first second.
 
-1. **Fast attack craft** — two 28 m patrol boats.
-2. **Hostile gunship** — an enemy helicopter; your SAMs and CIWS work for you.
-3. **Enemy corvette** — a matching 54 m hull. Your own ship is repaired and
-   rearmed before this one arrives.
+English and Russian, switchable on the menu.
+
+### Controls
+
+| | |
+|---|---|
+| `W A S D` | helm |
+| `LMB` | guns, at the pointer |
+| `X` | anti-ship missile at the designated contact |
+| `T` | designate the next contact, nearest first |
+| `TAB` | swap between the ship and the gunship |
+| `MMB` drag | orbit the camera · `Shift` to slide it |
+| `Esc` | pause — which lists all of the above |
 
 Press **Tab** at any time to leave the bridge and fly the gunship yourself; the
 AI crew takes the helm while you are away, and Tab brings you back. A hostile
